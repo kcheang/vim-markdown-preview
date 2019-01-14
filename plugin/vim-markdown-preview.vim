@@ -80,7 +80,7 @@ function! Vim_Markdown_Preview()
       if g:vim_markdown_preview_use_xdg_open == 1
         call system('xdg-open /tmp/vim-markdown-preview.html 1>/dev/null 2>/dev/null &')
       else
-        call system('see /tmp/vim-markdown-preview.html 1>/dev/null 2>/dev/null &')
+        call system('firefox --new-window /tmp/vim-markdown-preview.html 1>/dev/null 2>/dev/null &')
       endif
     else
       let curr_wid = system('xdotool getwindowfocus')
@@ -120,7 +120,7 @@ function! Vim_Markdown_Preview_Local()
   elseif g:vim_markdown_preview_perl == 1
     call system('Markdown.pl "' . b:curr_file . '" > /tmp/vim-markdown-preview.html')
   elseif g:vim_markdown_preview_pandoc == 1
-    call system('pandoc --standalone "' . b:curr_file . '" > /tmp/vim-markdown-preview.html')
+    call system('pandoc --standalone --mathjax "' . b:curr_file . '" > /tmp/vim-markdown-preview.html')
   else
     call system('markdown "' . b:curr_file . '" > vim-markdown-preview.html')
   endif
